@@ -7,14 +7,14 @@ import java.awt.event.*;
 public class Calculator
 {
     JFrame frame = new JFrame("SALARY CALCULATOR");
-    JPanel background = new JPanel(null); // нрйюг нр дхяоервепю йнлонмнбйх
-    JTextField soldField; // онке "TOTAL SOLD"
-    JTextField daysField; // онке "DAYS COUNT"
-    JTextField salaryField; // онке "SALARY PER MONTH"
-    JTextField paymentField; // онке "NEXT PAYMENT"
-    JCheckBox isPlanCompleted; // вейанйя "IS PLAN COMPLETED"
-    JRadioButton adminRadioButton; // пюдхнймнойю "ADMIN"
-    JRadioButton sellerRadioButton; // пюдхнймнойю "SELLER"
+    JPanel background = new JPanel(null);
+    JTextField soldField; // TOTAL SOLD
+    JTextField daysField; // DAYS COUNT
+    JTextField salaryField; // SALARY PER MONTH
+    JTextField paymentField; // NEXT PAYMENT
+    JCheckBox isPlanCompleted; // IS PLAN COMPLETED
+    JRadioButton adminRadioButton; // ADMIN
+    JRadioButton sellerRadioButton; // SELLER
 
     private final static int COMPONENT_HEIGHT = 15;
     private final static int LABEL_WIDTH = 200;
@@ -35,7 +35,7 @@ public class Calculator
         background.add(soldLabel);
 
         soldField = new JTextField();
-        soldField.setToolTipText("ENTER THE AMOUNT OF SALES"); // бяокшбючыюъ ондяйюгйю
+        soldField.setToolTipText("ENTER THE AMOUNT OF SALES");
         soldField.setBounds(150, 10, FIELD_WIDTH, COMPONENT_HEIGHT);
         background.add(soldField);
 
@@ -44,7 +44,7 @@ public class Calculator
         background.add(daysLabel);
 
         daysField = new JTextField();
-        daysField.setToolTipText("ENTER THE NUMBER OF WORKING DAYS"); // бяокшбючыюъ ондяйюгйю
+        daysField.setToolTipText("ENTER THE NUMBER OF WORKING DAYS");
         daysField.setBounds(150, 26, FIELD_WIDTH, COMPONENT_HEIGHT);
         background.add(daysField);
 
@@ -53,8 +53,8 @@ public class Calculator
         background.add(salaryLabel);
 
         salaryField = new JTextField();
-        salaryField.setEditable(false); // гюопер мю педюйрхпнбюмхе рейярнбнцн онкъ
-        salaryField.setToolTipText("NON-EDITABLE"); // бяокшбючыюъ ондяйюгйю
+        salaryField.setEditable(false);
+        salaryField.setToolTipText("NON-EDITABLE");
         salaryField.setBounds(150, 42, FIELD_WIDTH, COMPONENT_HEIGHT);
         background.add(salaryField);
 
@@ -63,18 +63,18 @@ public class Calculator
         background.add(paymentLabel);
 
         paymentField = new JTextField();
-        paymentField.setEditable(false); // гюопер мю педюйрхпнбюмхе рейярнбнцн онкъ
-        paymentField.setToolTipText("NON-EDITABLE"); // бяокшбючыюъ ондяйюгйю
+        paymentField.setEditable(false);
+        paymentField.setToolTipText("NON-EDITABLE");
         paymentField.setBounds(150, 58, FIELD_WIDTH, COMPONENT_HEIGHT);
         background.add(paymentField);
 
         adminRadioButton = new JRadioButton("ADMIN", true);
-        adminRadioButton.setToolTipText("CHOOSE YOUR POSITION"); // бяокшбючыюъ ондяйюгйю
+        adminRadioButton.setToolTipText("CHOOSE YOUR POSITION");
         adminRadioButton.setBounds(265, 42, RADIO_WIDTH, COMPONENT_HEIGHT);
         background.add(adminRadioButton);
 
         sellerRadioButton = new JRadioButton("SELLER", false);
-        sellerRadioButton.setToolTipText("CHOOSE YOUR POSITION"); // бяокшбючыюъ ондяйюгйю
+        sellerRadioButton.setToolTipText("CHOOSE YOUR POSITION");
         sellerRadioButton.setBounds(265, 58, RADIO_WIDTH, COMPONENT_HEIGHT);
         background.add(sellerRadioButton);
 
@@ -83,13 +83,13 @@ public class Calculator
         group.add(sellerRadioButton);
 
         isPlanCompleted = new JCheckBox("IS PLAN COMPLETED");
-        isPlanCompleted.setToolTipText("MARK WHETHER THE SALES PLAN IS COMPLETED"); // бяокшбючыюъ ондяйюгйю
+        isPlanCompleted.setToolTipText("MARK WHETHER THE SALES PLAN IS COMPLETED");
         isPlanCompleted.setBounds(265, 10, BOX_WIDTH, COMPONENT_HEIGHT);
         background.add(isPlanCompleted);
 
         JButton button = new JButton("CALCULATE");
         button.addActionListener(new ButtonEventListener());
-        button.setToolTipText("START THE CALCULATION PROCESS"); // бяокшбючыюъ ондяйюгйю
+        button.setToolTipText("START THE CALCULATION PROCESS");
         button.setBounds(150, 100, BUTTON_WIDTH, COMPONENT_HEIGHT);
         background.add(button);
 
@@ -102,10 +102,10 @@ public class Calculator
         frame.setJMenuBar(menuBar);
 
         frame.getContentPane().add(background);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // гюбепьемхе опнцпюллш опх гюйпшрхх нймю
-        frame.setResizable(false); // гюопер мю хглемемхе пюглепю нймю
-        frame.setVisible(true); // бхдхлнярэ нймю (дю/мер)
-        frame.setBounds(500, 200, 445, 200); // цкюбмне нймн
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setVisible(true);
+        frame.setBounds(500, 200, 445, 200);
     }
 
     public class ClearMenuItemListener implements ActionListener
@@ -113,23 +113,23 @@ public class Calculator
         public void actionPerformed(ActionEvent event)
         {
             soldField.setText("");
-            soldField.setBackground(Color.WHITE); // жбер тнмю
+            soldField.setBackground(Color.WHITE);
             daysField.setText("");
-            daysField.setBackground(Color.WHITE); // жбер тнмю
+            daysField.setBackground(Color.WHITE);
             salaryField.setText("");
-            salaryField.setBackground(Color.WHITE); // жбер тнмю
+            salaryField.setBackground(Color.WHITE);
             paymentField.setText("");
-            paymentField.setBackground(Color.WHITE); // жбер тнмю
+            paymentField.setBackground(Color.WHITE);
         }
     }
 
     public class ButtonEventListener implements ActionListener
     {
-        double totalSold; // оепелеммюъ дкъ упюмемхъ дюммшу хг онкъ "TOTAL SOLD"
-        int days; // оепелеммюъ дкъ упюмемхъ дюммшу хг онкъ "DAYS COUNT"
-        int prepaid; // юбюмя
-        double percent; // опнжемр нр бшпсвйх
-        double hourlyPayment; // онвюянбюъ нокюрю
+        double totalSold; // TOTAL SOLD
+        int days; // DAYS COUNT
+        int prepaid;
+        double percent;
+        double hourlyPayment;
 
         public void actionPerformed(ActionEvent event)
         {
@@ -137,10 +137,10 @@ public class Calculator
             {
                 totalSold = Double.parseDouble(soldField.getText());
                 days = Integer.parseInt(daysField.getText());
-                soldField.setBackground(Color.WHITE); // жбер тнмю
-                daysField.setBackground(Color.WHITE); // жбер тнмю
-                salaryField.setBackground(new Color(200, 255, 200)); // жбер тнмю
-                paymentField.setBackground(new Color(200, 255, 200)); // жбер тнмю
+                soldField.setBackground(Color.WHITE);
+                daysField.setBackground(Color.WHITE);
+                salaryField.setBackground(new Color(200, 255, 200));
+                paymentField.setBackground(new Color(200, 255, 200));
 
 
 
@@ -181,16 +181,16 @@ public class Calculator
             catch (Exception exception)
             {
                 soldField.setText("MUST BE FILLED");
-                soldField.setBackground(new Color(255, 200, 200)); // жбер тнмю
+                soldField.setBackground(new Color(255, 200, 200));
                 daysField.setText("MUST BE FILLED");
-                daysField.setBackground(new Color(255, 200, 200)); // жбер тнмю
+                daysField.setBackground(new Color(255, 200, 200));
                 salaryField.setText("");
-                salaryField.setBackground(Color.WHITE); // жбер тнмю
+                salaryField.setBackground(Color.WHITE);
                 paymentField.setText("");
-                paymentField.setBackground(Color.WHITE); // жбер тнмю
+                paymentField.setBackground(Color.WHITE);
 
                 JFrame errorWindow = new JFrame();
-                errorWindow.setResizable(false); // гюопер мю хглемемхе пюглепю нймю
+                errorWindow.setResizable(false);
                 JPanel errorPanel = new JPanel();
                 JLabel errorLabel = new JLabel("ERROR");
                 errorPanel.add(errorLabel);
