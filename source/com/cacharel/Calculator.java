@@ -138,13 +138,16 @@ public class Calculator
 
                 boolean isSeller = sellerRadioButton.isSelected();
                 boolean hasCompleted = isPlanCompleted.isSelected();
-                Computer computer = new Computer();
-                double salaryAfterTax = computer.calculate(isSeller, hasCompleted, totalSold, days);
-
+                Settings settings =
+                        new Settings(0.13,
+                        new PositionSettings(12000, 12.5, 120, 0.05, 0.04),
+                        new PositionSettings(18000, 12.5, 140, 0.06, 0.05));
+                Computer computer = new Computer(settings);
+                Position position = isSeller ? new Position(settings.sellerSettings) : new Position(settings.adminSettings);
+                double salaryAfterTax = computer.calculate(position, hasCompleted, totalSold, days);
 
                 salaryField.setText(Double.toString(salaryAfterTax));
-                // TODO: разобраться с prepaid
-                //paymentField.setText(Double.toString(salaryAfterTax - prepaid));
+                paymentField.setText(Double.toString(salaryAfterTax - position.getPrepaid()));
             }
             catch (Exception exception)
             {

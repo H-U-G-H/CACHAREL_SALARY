@@ -2,34 +2,25 @@ package com.cacharel;
 
 public class Position
 {
-    private int prepaid;
-    private double workShift;
-    private int salaryPerHour;
-    private double percentDone;
-    private double percentNotDone;
+    private PositionSettings settings;
 
-
-    public Position(int prepaid, double workShift, int salaryPerHour, double percentDone, double percentNotDone)
+    public Position(PositionSettings settings)
     {
-        this.prepaid = prepaid;
-        this.workShift = workShift;
-        this.salaryPerHour = salaryPerHour;
-        this.percentDone = percentDone;
-        this.percentNotDone = percentNotDone;
+        this.settings = settings;
     }
 
     public int getPrepaid()
     {
-        return prepaid;
+        return this.settings.prepaid;
     }
 
     public double getWorkShiftSalary()
     {
-        return workShift * salaryPerHour;
+        return this.settings.workShift * this.settings.salaryPerHour;
     }
 
     public double getPercent(boolean isPlanCompleted)
     {
-        return isPlanCompleted ? percentDone : percentNotDone;
+        return isPlanCompleted ? this.settings.percentCompleted : this.settings.percentNotCompleted;
     }
 }
