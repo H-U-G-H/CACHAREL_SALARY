@@ -2,7 +2,6 @@ package com.cacharel;
 
 public class Computer
 {
-
     private int sellerPrepaid = 12000;
     private int adminPrepaid = 18000;
     private double workShift = 12.5;
@@ -16,39 +15,14 @@ public class Computer
 
     public double calculate(boolean isSeller, boolean hasCompleted, double totalSold, int days)
     {
-        int prepaid;
-        double percent;
-        double hourlyPayment;
+        Position position;
+        Position sellerPosition = new Position(sellerPrepaid, workShift, sellerSalaryPerHour, sellerPercentCompleted, sellerPercentNotCompleted);
+        Position adminPosition = new Position(adminPrepaid, workShift, adminSalaryPerHour, adminPercentCompleted, adminPercentNotCompleted);
 
-        if (isSeller)
-        {
-            prepaid = sellerPrepaid;
-            hourlyPayment = workShift * sellerSalaryPerHour;
-            if (hasCompleted)
-            {
-                percent = sellerPercentCompleted;
-            }
-            else
-            {
-                percent = sellerPercentNotCompleted;
-            }
-        }
-        else
-        {
-            prepaid = adminPrepaid;
-            hourlyPayment = workShift * adminSalaryPerHour;
-            if (hasCompleted)
-            {
-                percent = adminPercentCompleted;
-            }
-            else
-            {
-                percent = adminPercentNotCompleted;
-            }
-        }
+        position = isSeller ? sellerPosition : adminPosition;
 
-        double sellPercent = (totalSold * percent);
-        double salaryBeforeTax = sellPercent + (days * hourlyPayment);
+        double sellPercent = (totalSold * position.getPercent(hasCompleted));
+        double salaryBeforeTax = sellPercent + (days * position.getWorkShiftSalary());
         double salaryAfterTax = salaryBeforeTax - (salaryBeforeTax * incomeTax);
 
         return salaryAfterTax;
