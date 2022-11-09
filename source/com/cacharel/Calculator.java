@@ -125,58 +125,26 @@ public class Calculator
 
     public class ButtonEventListener implements ActionListener
     {
-        double totalSold; // TOTAL SOLD
-        int days; // DAYS COUNT
-        int prepaid;
-        double percent;
-        double hourlyPayment;
-
         public void actionPerformed(ActionEvent event)
         {
             try
             {
-                totalSold = Double.parseDouble(soldField.getText());
-                days = Integer.parseInt(daysField.getText());
+                double totalSold = Double.parseDouble(soldField.getText());
+                int days = Integer.parseInt(daysField.getText());
                 soldField.setBackground(Color.WHITE);
                 daysField.setBackground(Color.WHITE);
                 salaryField.setBackground(new Color(200, 255, 200));
                 paymentField.setBackground(new Color(200, 255, 200));
 
+                boolean isSeller = sellerRadioButton.isSelected();
+                boolean hasCompleted = isPlanCompleted.isSelected();
+                Computer computer = new Computer();
+                double salaryAfterTax = computer.calculate(isSeller, hasCompleted, totalSold, days);
 
 
-                if (sellerRadioButton.isSelected())
-                {
-                    prepaid = 12000;
-                    hourlyPayment = 12.5 * 120;
-                    if (isPlanCompleted.isSelected())
-                    {
-                        percent = 0.05;
-                    }
-                    else
-                    {
-                        percent = 0.04;
-                    }
-                }
-
-                if (adminRadioButton.isSelected())
-                {
-                    prepaid = 18000;
-                    hourlyPayment = 12.5 * 140;
-                    if (isPlanCompleted.isSelected())
-                    {
-                        percent = 0.06;
-                    }
-                    else
-                    {
-                        percent = 0.05;
-                    }
-                }
-
-                double temp = (totalSold * percent);
-                temp = temp + (days * hourlyPayment);
-                temp = temp - (temp * 0.13);
-                salaryField.setText(Double.toString(temp));
-                paymentField.setText(Double.toString(temp - prepaid));
+                salaryField.setText(Double.toString(salaryAfterTax));
+                // TODO: разобраться с prepaid
+                //paymentField.setText(Double.toString(salaryAfterTax - prepaid));
             }
             catch (Exception exception)
             {
