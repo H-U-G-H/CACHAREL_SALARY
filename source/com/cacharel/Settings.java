@@ -2,15 +2,21 @@ package com.cacharel;
 
 public class Settings
 {
-    public double incomeTax;
+    public double incomeTax; // ПОДОХОДНЫЙ НАЛОГ
 
-    public PositionSettings sellerSettings;
-    public PositionSettings adminSettings;
+    public PositionSettings sellerSettings; // ПАРАМЕТРЫ ПРОДАВЦА
+    public PositionSettings adminSettings; // ПАРАМЕТРЫ АДМИНИСТРАТОРА
+    public PositionSettings seniorSettings; // ПАРАМЕТРЫ СТАРШЕГО АДМИНИСТРАТОРА
 
-    public Settings(double incomeTax, PositionSettings sellerSettings, PositionSettings adminSettings)
+    // КОНСТРУКТОР
+    public Settings(double incomeTax,
+                    PositionSettings sellerSettings,
+                    PositionSettings adminSettings,
+                    PositionSettings seniorSettings)
     {
-        this.incomeTax = incomeTax;
-        this.sellerSettings = sellerSettings;
-        this.adminSettings = adminSettings;
+        this.incomeTax = incomeTax; // ПОДОХОДНЫЙ НАЛОГ
+        this.sellerSettings = sellerSettings; // ПАРАМЕТРЫ ПРОДАВЦА
+        this.adminSettings = adminSettings; // ПАРАМЕТРЫ АДМИНИСТРАТОРА
+        this.seniorSettings = seniorSettings; // ПАРАМЕТРЫ СТАРШЕГО АДМИНИСТРАТОРА
     }
 }
