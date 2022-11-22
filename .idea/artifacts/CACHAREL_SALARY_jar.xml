@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CACHAREL_SALARY:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CACHAREL_SALARY_jar</output-path>
+    <root id="archive" name="CACHAREL_SALARY.jar">
+      <element id="module-output" name="CACHAREL_SALARY" />
+    </root>
+  </artifact>
+</component>
