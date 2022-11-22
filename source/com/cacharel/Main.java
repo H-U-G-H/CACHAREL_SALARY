@@ -3,6 +3,7 @@ package com.cacharel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 
 public class Main
 {
@@ -21,7 +22,6 @@ public class Main
     private final static int LABEL_WIDTH = 200;
     private final static int FIELD_WIDTH = 105;
     private final static int RADIO_WIDTH = 100;
-    private final static int BOX_WIDTH = 200;
     private final static int BUTTON_WIDTH = 105;
 
     public static void main(String[] args)
@@ -123,6 +123,8 @@ public class Main
     {
         public void actionPerformed(ActionEvent event)
         {
+            planField.setText("");
+            planField.setBackground(Color.WHITE);
             soldField.setText("");
             soldField.setBackground(Color.WHITE);
             daysField.setText("");
@@ -140,6 +142,7 @@ public class Main
         {
             try
             {
+                double salesPlan = Double.parseDouble(planField.getText());
                 double totalSold = Double.parseDouble(soldField.getText());
                 int days = Integer.parseInt(daysField.getText());
                 soldField.setBackground(Color.WHITE);
@@ -152,14 +155,14 @@ public class Main
                 boolean isSenior = seniorRadioButton.isSelected();
 
                 boolean hasCompleted;
-                if(Integer.parseInt(planField.getText()) >= Integer.parseInt(soldField.getText())) hasCompleted = true;
+                if(Integer.parseInt(soldField.getText()) >= Integer.parseInt(planField.getText())) hasCompleted = true;
                 else hasCompleted = false;
 
                 Settings settings =
                         new Settings(0.13,
                         new PositionSettings(12000, 12.5, 120, 0.05, 0.04),
                         new PositionSettings(18000, 12.5, 140, 0.06, 0.05),
-                        new PositionSettings(24000, 12.5, 170, 0.15, 0.15));
+                        new PositionSettings(24000, 12.5, 170, 0.015, 0.015));
                 Calculator calculator = new Calculator(settings);
 
                 Position position = null; // ВЫБОР ДОЛЖНОСТИ
@@ -167,10 +170,12 @@ public class Main
                 if(isAdmin) position = new Position(settings.adminSettings);
                 if(isSenior) position = new Position(settings.seniorSettings);
 
-                double salaryAfterTax = calculator.calculate(position, hasCompleted, totalSold, days);
+                double salaryAfterTax = calculator.calculate(position, hasCompleted, salesPlan, totalSold, days);
 
-                salaryField.setText(Double.toString(salaryAfterTax));
-                paymentField.setText(Double.toString(salaryAfterTax - position.getPrepaid()));
+                String salary = new DecimalFormat("#0.00").format(salaryAfterTax);
+                salaryField.setText(salary);
+                String salaryMinusPrepaid = new DecimalFormat("#0.00").format(salaryAfterTax - position.getPrepaid());
+                paymentField.setText(salaryMinusPrepaid);
             }
             catch (Exception exception)
             {
