@@ -23,7 +23,7 @@ public class Main
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainWindow.setResizable(false);
         mainWindow.setVisible(true);
-        mainWindow.setBounds(500, 200, 445, 200);
+        mainWindow.setBounds(500, 200, 360, 200);
     }
 
     public static class ButtonEventListener implements ActionListener

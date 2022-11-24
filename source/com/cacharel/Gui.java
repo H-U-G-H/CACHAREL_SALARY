@@ -104,8 +104,8 @@ public class Gui
     public JMenuBar buildMenu()
     {
         JMenuBar menuBar = new JMenuBar();
-        JMenu fileMenu = new JMenu("File");
-        JMenuItem clearMenuItem = new JMenuItem("Clear");
+        JMenu fileMenu = new JMenu("FILE");
+        JMenuItem clearMenuItem = new JMenuItem("CLEAR");
         clearMenuItem.addActionListener(new ClearMenuItemListener());
         fileMenu.add(clearMenuItem);
         menuBar.add(fileMenu);
